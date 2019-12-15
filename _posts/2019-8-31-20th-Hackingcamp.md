@@ -1,6 +1,6 @@
 ---
 title: "2019 20th Hackingcamp CTF Writeup"
-date: 2019-8031
+date: 2019-8-31
 tags: [CTF]
 categories: [CTF]
 ---
