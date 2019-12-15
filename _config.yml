@@ -1,0 +1,73 @@
+#
+###################################
+# Site wide configuration
+####################################
+#
+title: su - realsung
+email:
+description: realsung's blog
+url: https://realsung.github.io
+keywords: ["blog", "jekyll"]
+
+#
+###################################
+# Jekyll configuration
+####################################
+#
+timezone:          Europe/Paris
+markdown:          kramdown
+highlighter:       none
+excerpt_separator: <!--more-->
+permalink:         /:year/:title
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  syntax_highlighter_opts:
+    disable: true
+  enable_coderay: false
+
+#
+###################################
+# Site Owner configuration
+####################################
+#
+owner:
+  name: realsung
+  avatar: ../images/profile.jpg
+  job: "Student"
+  bio: "realsung's blog"
+  email: sungjun0208@naver.com
+  disqus-shortname: realsung
+  twitter: #
+  facebook: reallsung
+  google:
+    plus: #username
+    analytics:
+    verify:
+    ad-client:
+    ad-slot:
+  bing-verify:
+  github: realsung
+  gitlab: #username
+  stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
+  linkedin:
+  skype: 
+  xing: #username
+  instagram: real_sungs
+  lastfm: #username
+  tumblr: #username
+  pinterest: #username
+  foursquare: #username
+  steam: #username
+  dribbble: #username
+  youtube: #username
+  soundcloud: #username
+  weibo: #username
+  flickr: #username
+  500px: #username
+  codepen: #username
+  reddit: 
+  telegram:

@@ -1,0 +1,43 @@
+---
+title: "Native - CyberTalent CTF 2019"
+categories: [reversing, cybertalent]
+tags: [reversing]
+date: 2019-02-11
+---
+<!--more-->
+
+Running readelf, we get the entrypoint as 1002004h. So, the executable segment must start at 1002000h
+
+![img0](/images/native0.png)
+
+It takes two arguments and set ah register to 20h.
+
+![img1](/images/native1.png)
+
+A byte at offset 100200Ah is used for the validation flag. It is the byte that is moved to bl register in the `mov bl, 1` instruction.  
+
+This byte is cleared to 0 before entering the loop. The loop executes the following 32 times
+
+    input[i] == unk_1002000[i]+unk_1002000[i+20h]+unk_1002000[i+40h]+unk_1002000[i+60h] & 0xff
+
+Now getting the flag is pretty easy.
+
+```python
+f = open('native', 'r')
+t = list(f.read())
+f.close()
+
+t[0xA] = '\0'  # flag is cleared to 0 initially
+ans = []
+
+for i in xrange(0x20):
+    s = 0
+    for j in xrange(4):
+        s += ord(t[(j*0x20 & 0xff)+i])
+    ans.append(chr(s & 0xff))
+print ''.join(ans)
+```
+
+And here's the output
+
+**FLAG{tiny_e1f_analysis_is__real}**

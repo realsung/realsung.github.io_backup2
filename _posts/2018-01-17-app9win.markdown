@@ -1,0 +1,137 @@
+---
+title: "HackThisSite - Application 9"
+date: 2018-01-17 18:17:00
+tags: [reversing]
+categories: [reversing]
+---
+
+<!--more-->
+Open the executable in IDA. We see that it's written in VB.
+
+![Image0](/images/hts/a90.png)
+
+```x86asm
+.text:00405502             mov     edx, offset aHtsApplication ; "HTS Application Challenge Programmed by"...
+.text:00405507             lea     ecx, [ebp-18h]
+.text:0040550A             mov     [ebp-18h], ebx
+.text:0040550D             call    ds:__vbaStrCopy
+.text:00405513             mov     edi, ds:__vbaI4Str
+.text:00405519             push    offset a200     ; "200"
+.text:0040551E             call    edi ; __vbaI4Str
+.text:00405520             push    offset a600     ; "600"
+.text:00405525             mov     [esi+34h], eax
+.text:00405528             call    edi ; __vbaI4Str
+.text:0040552A             push    offset a1100    ; "1100"
+.text:0040552F             mov     [esi+38h], eax
+.text:00405532             call    edi ; __vbaI4Str
+.text:00405534             mov     [esi+3Ch], eax
+```
+
+In the above snippet, [esi+0x34] is initialized with ParseInt("200") i.e. 200, [esi+0x38] is initialized with 600 and [esi+0x3C] is initialized with 1100.
+
+```x86asm
+.text:004055AF                 push    12Ch
+.text:004055B4                 push    100
+.text:004055B6                 call    sub_40519C      ; kernel32_Beep
+.text:004055BB                 mov     esi, ds:__vbaSetSystemError
+.text:004055C1                 call    esi
+.text:004055C3                 push    12Ch
+.text:004055C8                 push    500
+.text:004055CD                 call    sub_40519C      ; kernel32_Beep
+.text:004055D2                 call    esi
+.text:004055D4                 push    12Ch
+.text:004055D9                 push    1000
+.text:004055DE                 call    sub_40519C      ; kernel32_Beep
+.text:004055E3                 call    esi
+```
+
+So this snippet must be in the event handler for Play button as the play button is the only button that produces three consecutive beeps. This implies that the Play button produces beeps of frequencies 100, 500, and 1000 each of duration 0.3 seconds.
+
+```x86asm
+.text:00404F5A loc_404F5A:
+.text:00404F5A                 sub     dword ptr [esp+4], 3Fh
+.text:00404F62                 jmp     loc_405610
+.text:00404F67 loc_404F67:
+.text:00404F67                 sub     dword ptr [esp+4], 43h
+.text:00404F6F                 jmp     loc_405690
+.text:00404F74 loc_404F74:
+.text:00404F74                 sub     dword ptr [esp+4], 47h
+.text:00404F7C                 jmp     loc_405710
+```
+
+In these jumps we can observe one thing
+
+```x86asm
+; ..............................
+mov     edx, [esi+X]      ; X = 0x34, 0x38, 0x3C
+push    12Ch
+push    edx
+call    sub_40519C        ; kernel32_Beep
+call    ds:__vbaSetSystemError
+; ..............................
+```
+
+So, these three routines emit beeps of frequency [esi+0x34], [esi+0x38], [esi+0x3C]. Thus each of the Match buttons emit beeps of frequency 100 more than the frequency of the beeps produced by Play button.
+
+To get the flag, we have two ways.
+
+Change the callback of Play button to produce frequencies 200, 600, 1100 by changing the values of `push NNN`
+Changing the values of the unicode strings a200, a600, a1100
+
+```x86asm
+.text:0040522C a200:
+.text:0040522C                 unicode 0, <200>,0
+.text:00405234                 dd 6
+.text:00405238 a600:
+.text:00405238                 unicode 0, <600>,0
+.text:00405240                 dw 8, 0
+.text:00405244 a1100:
+.text:00405244                 unicode 0, <1100>,0
+```
+
+I've followed Way #2. First start a new process app9win.exe in suspended state. Then patch the required bytes
+
+```x86asm
+.686
+.model flat, stdcall
+option casemap :none
+
+include \masm32\include\windows.inc
+include \masm32\include\user32.inc
+include \masm32\include\kernel32.inc
+include \masm32\include\psapi.inc
+
+includelib \masm32\lib\user32.lib
+includelib \masm32\lib\psapi.lib
+includelib \masm32\lib\kernel32.lib
+
+.data
+    dwBytes DWORD ?
+    pStartupInfo STARTUPINFO <>
+    pProcInfo PROCESS_INFORMATION <>
+    szFileName BYTE "app9win.exe", 0
+    szPatchBytes BYTE 31h, 0, 30h, 0, 30h, 0, 0, 0, 6, 0, 0, 0, 35h, 0, 30h, 0, 30h, 0, 0, 0, 8, 0, 0, 0, 31h, 0, 30h, 0, 30h, 0, 30h, 0
+
+.code x0r19x91
+start:
+    mov [pStartupInfo.cb], sizeof STARTUPINFO
+    mov [pStartupInfo.dwFlags], STARTF_FORCEONFEEDBACK
+    invoke CreateProcess, offset szFileName, NULL, NULL, NULL, FALSE, CREATE_SUSPENDED, NULL, NULL, offset pStartupInfo, offset pProcInfo
+    or eax, eax
+    jz quit
+    invoke GetModuleHandle, NULL
+    add eax, 522Ch
+    invoke WriteProcessMemory, [pProcInfo.hProcess], eax, offset szPatchBytes, 32, offset dwBytes
+    nop
+    invoke ResumeThread, [pProcInfo.hThread]
+    invoke WaitForSingleObject, [pProcInfo.hThread], INFINITE
+    invoke CloseHandle, [pProcInfo.hThread]
+    invoke CloseHandle, [pProcInfo.hProcess]
+quit:
+    invoke ExitProcess, 0
+end start
+```
+
+Now on executing the above program,
+
+![Image1](/images/hts/a91.png)

@@ -1,0 +1,272 @@
+---
+title: "HackThisSite - Application 17"
+date: 2018-01-18 09:54:00
+categories: [reversing]
+tags: [reversing]
+---
+
+<!--more-->
+This is a pretty simple crackme written in C++.
+
+Here's the algorithm
+
+```python
+def validate(user, pwd):
+    if len(pwd) < 4 || user == NULL:
+        return 1
+
+    memset(var_404, 0, 0x400)
+    var_434 = [0x120, 0x150, 0x14C, 0xB4]
+
+    for i in range(4):
+        if pwd[i]*4 != var_434[i]:
+            return 1
+
+    # pwd[:4] == "HTS-"
+
+    if len(pwd) > 7:
+        for i in range(3, len(pwd), 5):
+            if pwd[i] != '-':
+                return 1
+
+    if len(pwd) > 3 :
+        for i in range(3, len(pwd)):
+            if pwd[i] != '-':
+                var_404 += pwd[i]
+
+    if len(var_404) != 2*len(user):
+        return 1
+
+    if len(user) == 0:
+        return 0    # SUCCESS
+
+    buf = "\x00\x00"
+    var_408 = 0
+    ptr = &var_404
+    for i in range(len(user)):
+        buf[0] = *(ptr)
+        buf[1] = *(ptr+1)
+        var_420 = int(buf, 16)
+
+        var_408 = ~(user[i] << var_408) & ((user[i]-var_408)>>1)
+        old = var_408
+        var_424 = var_420
+
+        for j in range(len(pwd)):
+            for k in range(len(user)):
+                if var_408 == 0:
+                    var_408 = 0x50
+                var_408 = 1+ (~(pwd[j]<<var_408) & ((user[k]-var_408)>>1) & var_408)
+
+        # -------------------------------------------
+        #  The above loop is useless, so
+        #  ~(user[i] << var_408) & ((user[i]-var_408)>>1) == var_420
+        # -------------------------------------------
+
+        if old != var_420:
+            return 1
+
+        var_408 = var_424
+        ptr += 2
+
+    return 0
+```
+
+The **inner loop is useless** since var\_420 is matched against the old value of var\_408 and not the updated value.  
+So var\_420 must be equal to var\_408. Thus, we can get the serial key easily
+
+```x86asm
+;
+; Author : x0r19x91
+; Assembler: masm32
+;
+.686
+.model flat, stdcall
+option casemap :none
+
+include \masm32\include\windows.inc
+include \masm32\include\user32.inc
+include \masm32\include\kernel32.inc
+include \masm32\include\gdi32.inc
+
+includelib \masm32\lib\gdi32.lib
+includelib \masm32\lib\user32.lib
+includelib \masm32\lib\kernel32.lib
+
+.data
+	szAppName BYTE "app17win", 0
+	hInstance HINSTANCE ?
+	hWnd HWND ?
+	msg MSG <>
+	btnGenerate HWND ?
+	hHeap HANDLE ?
+	szBuffer DWORD ?
+	szErrorText BYTE "Failed to allocate from Heap !", 0
+	szEvenLength BYTE "User Name must be of Even length !", 0
+	dwBufferSize DWORD ?
+	dwLen DWORD ?
+	szUserName DWORD ?
+	szTable BYTE "0123456789ABCDEF"
+	hFont HFONT ?
+	szFace BYTE "Courier New", 0
+	lFont LOGFONT <>
+
+.code
+DialogProc:
+	mov ebp, [esp+4]
+	mov ecx, [esp+8]
+	cmp ecx, WM_INITDIALOG
+	jz onInitDialog
+	cmp ecx, WM_COMMAND
+	jz onCommand
+	cmp ecx, WM_DESTROY
+	jz onDestroy
+	cmp ecx, WM_CLOSE
+	jz quit
+	xor eax, eax
+	ret
+
+onDestroy:
+	invoke PostQuitMessage, 0
+	ret
+
+quit:
+	invoke EndDialog, ebp, 0
+	ret
+
+onInitDialog:
+	invoke GetDlgItem, ebp, 5
+	mov btnGenerate, eax
+	mov [lFont.lfHeight], 15
+	lea edi, [lFont.lfFaceName]
+	mov esi, offset szFace
+	mov ecx, 3
+	rep movsd
+	invoke CreateFontIndirect, offset lFont
+	mov hFont, eax
+	invoke GetProcessHeap
+	mov hHeap, eax
+	invoke SendDlgItemMessage, ebp, 2, WM_SETFONT, hFont, FALSE
+	invoke SendDlgItemMessage, ebp, 4, WM_SETFONT, hFont, FALSE
+	mov eax, 1
+	ret
+
+onCommand:
+	mov eax, [esp+16]
+	cmp eax, btnGenerate
+	jnz bye
+
+	invoke SendDlgItemMessage, ebp, 2, WM_GETTEXTLENGTH, 0, 0
+	mov dwLen, eax
+	or eax, eax
+	jz bye
+
+	shr eax, 1
+	mov ebx, eax
+	jc oddLength
+
+	inc dwLen
+	invoke HeapAlloc, hHeap, HEAP_ZERO_MEMORY, dwLen
+	mov szUserName, eax
+	or eax, eax
+	jz failed
+
+	lea eax, [ebx+4*ebx+4]
+	mov dwBufferSize, eax
+	invoke HeapAlloc, hHeap, HEAP_ZERO_MEMORY, eax
+	mov szBuffer, eax
+	or eax, eax
+	jz failed
+
+	mov edi, eax
+	mov eax, 2d535448h
+	stosd
+	sub edi, 6
+l1:
+	add edi, 5
+	mov byte ptr [edi], '-'
+	dec ebx
+	jnz l1
+
+	invoke SendDlgItemMessage, ebp, 2, WM_GETTEXT, dwLen, szUserName
+
+	push ebp
+	xor ecx, ecx
+	mov esi, szUserName
+	mov edi, 4
+l2:
+	movzx edx, byte ptr [esi]
+	mov eax, edx
+	shl edx, cl
+	sub eax, ecx
+	sar eax, 1
+	not edx
+	and eax, edx
+	mov ecx, eax
+	mov ebx, eax
+	and eax, 0fh
+	shr ebx, 4
+	and ebx, 0fh
+	mov al, byte ptr [offset szTable+eax]
+	mov bl, byte ptr [offset szTable+ebx]
+	mov ebp, szBuffer
+	mov [ebp+edi], bl
+	mov [ebp+edi+1], al
+
+	movzx edx, byte ptr [esi+1]
+	mov eax, edx
+	shl edx, cl
+	sub eax, ecx
+	sar eax, 1
+	not edx
+	and eax, edx
+	mov ecx, eax
+	mov ebx, eax
+	and eax, 0fh
+	shr ebx, 4
+	and ebx, 0fh
+	mov al, byte ptr [offset szTable+eax]
+	mov bl, byte ptr [offset szTable+ebx]
+	mov ebp, szBuffer
+	mov [ebp+edi+2], bl
+	mov [ebp+edi+3], al
+	add edi, 5
+	add esi, 2
+	or byte ptr [esi], 0
+	jnz l2
+
+	pop ebp
+	invoke SendDlgItemMessage, ebp, 4, WM_SETTEXT, 0, szBuffer
+	invoke HeapFree, hHeap, HEAP_NO_SERIALIZE, szUserName
+	invoke HeapFree, hHeap, HEAP_NO_SERIALIZE, szBuffer
+	jmp bye
+
+failed:
+	invoke MessageBox, ebp, offset szErrorText, NULL, MB_ICONWARNING
+	push 1
+	push exitNow
+	add dword ptr [esp], 2
+	ret
+
+oddLength:
+	invoke MessageBox, ebp, offset szEvenLength, offset szAppName, MB_ICONINFORMATION
+	invoke SendDlgItemMessage, ebp, 4, WM_SETTEXT, 0, NULL
+
+bye:
+	mov eax, 1
+	ret
+
+start:
+	invoke GetModuleHandle, NULL
+	mov hInstance, eax
+	invoke DialogBoxParam, eax, 1, NULL, offset DialogProc, NULL
+
+exitNow:
+	push NULL
+	call ExitProcess
+end start
+```
+
+And here's the output
+
+![Output](/images/hts/a17.png)
