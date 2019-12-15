@@ -1,5 +1,5 @@
 ---
-title: 2019 Codegate Quals Writeup"
+title: "2019 Codegate Quals Writeup"
 date: 2019-1-31
 tags: [CTF]
 categories: [CTF]
