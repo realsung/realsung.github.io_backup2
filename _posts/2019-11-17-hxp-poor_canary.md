@@ -1,6 +1,6 @@
 ---
 title: "2019 hxp CTF poor_canary"
-date: 2019-11-26
+date: 2019-11-17
 tags: [hxp]
 categories: [Pwn]
 ---
