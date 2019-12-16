@@ -1,7 +1,7 @@
 ---
-title: "2015 Layer7 CTF ReverseM"
+title: "2015 Layer7 CTF ReverseMe"
 date: 2019-8-7
-tags: [CTF]
+tags: [Layer7]
 categories: [CTF]
 ---
 

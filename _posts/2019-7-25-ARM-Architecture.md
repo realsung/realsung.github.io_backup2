@@ -1,7 +1,7 @@
 ---
 title: "ARM Architecture"
 date: 2019-7-20
-tags: [ARM]
+tags: [ARM,Architecture]
 categories: [Reversing]
 ---
 

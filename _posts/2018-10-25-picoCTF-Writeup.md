@@ -1,7 +1,7 @@
 ---
 title: 2018 Pico CTF Writeup
 date: 2018-10-25
-tags: [CTF]
+tags: [PicoCTF]
 categories: [CTF]
 ---
 

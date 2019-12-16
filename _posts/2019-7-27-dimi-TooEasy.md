@@ -1,7 +1,7 @@
 ---
 title: "2017 Dimi CTF Final TooEasy"
 date: 2019-7-27
-tags: [CTF]
+tags: [dimi,z3]
 categories: [CTF]
 ---
 

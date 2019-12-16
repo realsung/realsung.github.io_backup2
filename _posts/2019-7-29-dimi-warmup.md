@@ -1,7 +1,7 @@
 ---
 title: "2017 Dimi CTF Final warmup"
 date: 2019-7-29
-tags: [CTF]
+tags: [dimi,z3]
 categories: [CTF]
 ---
 

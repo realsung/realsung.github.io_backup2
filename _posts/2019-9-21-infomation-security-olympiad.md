@@ -1,7 +1,7 @@
 ---
 title: "2019 제 14회 중고생정보보호올림피아드 풀이"
 date: 2019-9-21
-tags: [CTF]
+tags: [정보보호올림피아드,Olymipad]
 categories: [CTF]
 ---
 

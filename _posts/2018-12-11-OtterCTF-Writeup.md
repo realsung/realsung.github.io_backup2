@@ -1,7 +1,7 @@
 ---
 title: "2018 Otter CTF Writeup"
 date: 2018-12-11
-tags: [CTF]
+tags: [OtterCTF]
 categories: [CTF]
 ---
 

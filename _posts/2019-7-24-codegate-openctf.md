@@ -1,7 +1,7 @@
 ---
 title: "2019 Codegate open CTF Writeup"
 date: 2019-7-24
-tags: [CTF]
+tags: [Codegate]
 categories: [CTF]
 ---
 

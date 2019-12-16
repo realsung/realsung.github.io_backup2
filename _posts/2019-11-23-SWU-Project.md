@@ -1,7 +1,7 @@
 ---
 title: "서울여자대학교 정보보호영재교육원 프로젝트 발표"
 date: 2019-11-23
-tags: [Daily]
+tags: [Project]
 categories: [Daily]
 ---
 

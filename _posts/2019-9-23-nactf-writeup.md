@@ -1,8 +1,8 @@
 ---
 title: "2019 Newark Academy CTF Writeup"
 date: 2019-9-23
-tags: [CTF]
-categories: [CTF]
+tags: [NaCTF]
+categories: [Pwn]
 ---
 
 # BufferOverflow #0

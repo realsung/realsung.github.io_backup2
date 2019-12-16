@@ -1,7 +1,7 @@
 ---
 title: "2019 TokyoWesterns CTF 5th Easy Crack Me"
 date: 2019-9-3
-tags: [CTF]
+tags: [TokyoWsterns]
 categories: [CTF]
 ---
 

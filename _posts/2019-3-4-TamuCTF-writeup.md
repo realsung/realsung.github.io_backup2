@@ -1,7 +1,7 @@
 ---
 title: "2019 Tamu CTF Writeup"
 date: 2019-3-4
-tags: [CTF]
+tags: [TamuCTF]
 categories: [CTF]
 ---
 
