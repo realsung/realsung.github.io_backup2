@@ -1,11 +1,11 @@
 ---
-title: "2019 Dimi CTF Prequal Writeup"
+title: "ARM Architecture"
 date: 2019-7-20
 tags: [ARM]
 categories: [Reversing]
 ---
 
-ARM Reversing 문제 풀기 위해 좀 정리하려고 한다.
+ARM 아키텍쳐에 대해 정리해놓으려고 한다.
 
 [참고 : Reference](http://infocenter.arm.com/help/index.jsp)
 
