@@ -11,7 +11,5 @@ categories: [Daily]
 
 발표 자료는 아래 PDF 참고
 
-<br />
-
 [2019 최종 프로젝트 발표 자료.pdf](https://github.com/realsung/realsung.github.io/files/3965153/2019.pdf)
 
