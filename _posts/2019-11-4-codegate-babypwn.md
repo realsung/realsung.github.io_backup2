@@ -11,10 +11,6 @@ canary leak해주면 되는데 이 바이너리를 보면 fork되어 있는 것�
 
 nc 접속해서 ret 전까지 카나리 값 맞춰주면서 덮어주고 recv함수 이용해서 bss영역에 /bin/sh (리버스쉘) 넣은 다음에 system함수로 실행시키면 된다.
 
-<br />
-
-시나리오
-
 > 1. Canary Leak
 >
 > 2. bof -> rop
@@ -22,8 +18,6 @@ nc 접속해서 ret 전까지 카나리 값 맞춰주면서 덮어주고 recv함
 > 3. rop chain -> recv(4,bss,/bin/sh,0)
 >
 > 4. system(bss)
-
-<br />
 
 ```python
 # -*-coding:utf-8-*- 
