@@ -20,7 +20,7 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 }
 ```
 
-일반적인 ROP를 할 수없는게 gadget이 부족하기 때문에 RTC를 이용하면 된다.
+gadget이 부족하기 때문에 일반적인 ROP를 할 수 없어서 RTC를 이용하면 된다.
 
 main 함수에서 buf 크기가 0x40인데 512만큼 받으니까 ret을 `__libc_csu_init ` 주소로 돌려서 Chaining 해주면서 풀면 된다.
 
