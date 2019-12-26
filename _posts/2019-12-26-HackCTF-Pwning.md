@@ -7,6 +7,8 @@ categories: [HackCTF]
 
 그냥 underflow 이용해서 입력할 수 있는 공간을 늘려줄 수 있다면 쉽게 풀 수 있다.
 
+`int $0x80` 있어서 syscall exploit인줄 알고 삽질했다.. pop 가젯이 부족해서 불가능이였다.
+
 ```c
 int vuln()
 {
