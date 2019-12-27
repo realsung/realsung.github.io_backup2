@@ -3,6 +3,7 @@ title: "2016 DefCamp CTF warm-heap"
 date: 2019-12-23
 tags: [DefCamp]
 categories: [Pwn]
+published: false
 ---
 
 Heap Chunk 공부하고자 간단한 Heap Overflow문제를 풀어봤다.
