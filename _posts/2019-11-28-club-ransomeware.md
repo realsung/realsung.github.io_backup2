@@ -3,6 +3,7 @@ title: "동아리 프로젝트 랜섬웨어 개발"
 date: 2019-11-28
 tags: [Club, Project]
 categories: [Club]
+published: false
 ---
 
 동아리 프로젝트로 [랜섬웨어](https://github.com/realsung/Ransomeware)를 개발하게 되었다.

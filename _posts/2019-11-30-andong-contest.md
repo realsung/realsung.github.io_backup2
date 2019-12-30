@@ -3,6 +3,7 @@ title: "2019 전국 고등학생 보안경진대회 후기"
 date: 2019-11-30
 tags: [Daily]
 categories: [Daily]
+published: false
 ---
 
 교내 고등해커 대회가 끝나고 바로 고속터미널역으로 출발해서 고속버스를 타고 안동으로 갔다.

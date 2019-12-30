@@ -3,6 +3,7 @@ title: "서울여자대학교 정보보호영재교육원 프로젝트 발표"
 date: 2019-11-23
 tags: [Project]
 categories: [Daily]
+published: false
 ---
 
 [서울여자대학교 정보보호영재교육원](http://security.swu.ac.kr/giftedu/) 마지막이자 최종 발표회에서 얼마전에 발생한 취약점에 대해 발표하였다. 

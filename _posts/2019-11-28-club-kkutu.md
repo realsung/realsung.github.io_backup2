@@ -3,6 +3,7 @@ title: "동아리 프로젝트 끄투 게임 핵 개발"
 date: 2019-11-28
 tags: [Club, Project]
 categories: [Club]
+published: false
 ---
 
 [끄투 게임 핵](https://github.com/realsung/Kkutu_hack)을 개발하게 되었다. 봇을 이용해서 테스트만 했지 실제로 게임 속에서 사용하지는 않았다.

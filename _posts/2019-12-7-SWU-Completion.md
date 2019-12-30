@@ -3,6 +3,7 @@ title: "서울여자대학교 정보보호영재교육원 수료식"
 date: 2019-12-7
 tags: [Daily]
 categories: [Daily]
+published: false
 ---
 
 2019년 12월 7일에 서울여자대학교 정보보호영재교육원 6기 수료식을 진행하였다. 
