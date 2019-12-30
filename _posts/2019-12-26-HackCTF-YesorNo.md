@@ -79,6 +79,8 @@ if ( input == v6 * v5 << (++v11 % 20 + 5) )
 
 그래서 `9830400` 들어가서 gets로 ret 바꿔서 puts leak하고 main으로 돌려서 oneshot 날려주면 된다. 그냥 문제에 라이브러리도 줘서 쉽게 풀었다.
 
+> exploit.py
+
 ```python
 from pwn import *
 

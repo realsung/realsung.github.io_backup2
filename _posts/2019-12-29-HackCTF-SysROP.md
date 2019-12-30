@@ -15,6 +15,8 @@ syscall을 이용해 `execve` 를 호출해 `execve('/bin/sh\x00',0,0)` 이런�
 
 data영역에 `/bin/sh\x00` 을 넣고 `read@got` 의 하위 1바이트는 overwrite 해서 syscall 호출해 인자를 `execve('/bin/sh\x00',0,0)`  이렇게 만들어주면 된다. execve의 syscall num은 59다.
 
+> exploit.py
+
 ```python
 from pwn import *
 
