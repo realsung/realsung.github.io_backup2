@@ -1,8 +1,8 @@
 ---
 title: "2017 CSAW CTF pilot"
 date: 2019-12-30
-tags: [Csaw]
-categories: [Csaw]
+tags: [CSAW]
+categories: [CSAW]
 ---
 
 c++ 바이너리인데 NX가 disable되어 있다. 그냥 간단한 RTS 문제다. 
