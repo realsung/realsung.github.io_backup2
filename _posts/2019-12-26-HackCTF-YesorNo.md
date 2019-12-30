@@ -3,7 +3,6 @@ title: "[HackCTF]Yes or no"
 date: 2019-12-26
 tags: [HackCTF]
 categories: [HackCTF]
-published: false
 ---
 
 문제 의도는 그냥 ++전에 오는지 후에 오는지로 값 어떻게 나오는지 알아서 값을 맞춰주도록 해서 취약점으로 유도하는게 의도였던거 같다. 문제 서버는 ubuntu 18.04다.

@@ -3,7 +3,6 @@ title: "2018 Codegate Super Marimo"
 date: 2019-12-23
 tags: [Codegate]
 categories: [Pwn]
-published: false
 ---
 
 64bit heap overflow 문제다. 변수랑 함수 이름은 내가 수정해놨다.
