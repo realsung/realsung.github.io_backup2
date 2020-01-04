@@ -1,6 +1,6 @@
 ---
 title: "2017 RCTF Recho"
-date: 2020-1-3
+date: 2020-1-4
 tags: [RCTF]
 categories: [RCTF]
 ---
