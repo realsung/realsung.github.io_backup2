@@ -2,7 +2,7 @@
 title: "2017 Dimi CTF Final angry"
 date: 2019-7-29
 tags: [dimi,z3]
-categories: [CTF]
+categories: [Dimi]
 ---
 
 파일 입출력을 사용해서 값을 읽어와서 루틴에 맞는지 아닌지 검증해 마지막에 GOOD을 출력해준다.

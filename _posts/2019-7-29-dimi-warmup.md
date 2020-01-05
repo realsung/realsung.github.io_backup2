@@ -2,7 +2,7 @@
 title: "2017 Dimi CTF Final warmup"
 date: 2019-7-29
 tags: [dimi,z3]
-categories: [CTF]
+categories: [Dimi]
 ---
 
 64bit 바이너리 warmup과 flag.enc가 주어졌다.

@@ -2,7 +2,7 @@
 title: "2015 Defcamp CTF r0pbaby"
 date: 2019-11-8
 tags: [Defcamp]
-categories: [Pwn]
+categories: [Defcamp]
 ---
 
 PIE 걸려있어서 2번 메뉴로 주소 가져온걸로 주소값 다 offset 맞춰줬다.

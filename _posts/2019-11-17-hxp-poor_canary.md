@@ -2,7 +2,7 @@
 title: "2019 hxp CTF poor_canary"
 date: 2019-11-17
 tags: [hxp]
-categories: [Pwn]
+categories: [hxp]
 ---
 
 ARM Architecture의 Pwn문제다. 

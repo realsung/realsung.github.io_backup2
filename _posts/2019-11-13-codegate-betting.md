@@ -2,7 +2,7 @@
 title: "2018 Codegate betting"
 date: 2019-11-13
 tags: [Codegate]
-categories: [Pwn]
+categories: [Codegate]
 ---
 
 x64 Canary Leak 문제다.

@@ -2,7 +2,7 @@
 title: "2018 Codegate BaskinRobins31"
 date: 2019-11-8
 tags: [Codegate]
-categories: [Pwn]
+categories: [Codegate]
 ---
 
 > puts leak

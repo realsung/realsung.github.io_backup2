@@ -2,7 +2,7 @@
 title: "2017 Codegate babypwn"
 date: 2019-11-4
 tags: [Codegate]
-categories: [Pwn]
+categories: [Codegate]
 ---
 
 Reverse Shell을 열어서 풀면 된다.

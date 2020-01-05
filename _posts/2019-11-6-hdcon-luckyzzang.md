@@ -2,7 +2,7 @@
 title: "2013 HDCON luckyzzang"
 date: 2019-11-6
 tags: [HDCON]
-categories: [Pwn]
+categories: [HDCON]
 ---
 
 프로그램 내부에서 소켓 서버를 열어주고 하는데 recv, send로 ROP해주면 된다. 

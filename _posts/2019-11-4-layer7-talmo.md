@@ -2,7 +2,7 @@
 title: "2018 Layer7 CTF talmoru_party!~"
 date: 2019-11-4
 tags: [Layer7]
-categories: [Pwn]
+categories: [Layer7]
 ---
 
 2018년 Layer7 CTF에 출제된 문제이다. 

@@ -2,7 +2,7 @@
 title: "2018 Codegate catshop"
 date: 2019-11-13
 tags: [Codegate]
-categories: [Pwn]
+categories: [Codegate]
 ---
 
 UAF 취약점이 발생한다. 

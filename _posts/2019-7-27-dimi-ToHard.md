@@ -2,7 +2,7 @@
 title: "2017 Dimi CTF Prequal ToHard"
 date: 2019-7-27
 tags: [dimi,angr]
-categories: [CTF]
+categories: [Dimi]
 ---
 
 디컴파일을 하면 이렇게 나온다. mips로 짠 문제다. 그냥 angr로 슥삭 돌리면 풀린다.
