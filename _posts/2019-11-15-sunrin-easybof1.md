@@ -2,7 +2,7 @@
 title: "2019 선린 교내해킹방어대회 easybof1"
 date: 2019-11-15
 tags: [Sunrin]
-categories: [CTF]
+categories: [Sunrin]
 ---
 
 stripped된 64bit 바이너리가 주어진다.
