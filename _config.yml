@@ -3,18 +3,18 @@
 # Site wide configuration
 ####################################
 #
-title: su - realsung
-email:
+title: /bin/realsung
+email: sungjun0208@naver.com
 description: realsung's blog
 url: https://realsung.github.io
-keywords: ["blog", "jekyll"]
+keywords: ["blog", "jekyll","ctf","CTF","wargame","hacking"]
 
 #
 ###################################
 # Jekyll configuration
 ####################################
 #
-timezone:          Europe/Paris
+timezone:          Asia/Seoul
 markdown:          kramdown
 highlighter:       none
 excerpt_separator: <!--more-->
@@ -25,8 +25,8 @@ kramdown:
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
-  #syntax_highlighter_opts:
-  #  disable: true
+  syntax_highlighter_opts:
+    disable: true
   enable_coderay: false
 
 
