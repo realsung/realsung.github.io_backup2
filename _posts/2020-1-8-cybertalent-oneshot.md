@@ -11,9 +11,9 @@ categories: [CyberTalents]
 
 그리고 밑에서는 s변수에 입력받고 `pritnf(&s);` 해주는데 이곳에서 fsb가 터진다. 
 
-밑에서 이 addr을 실행해주는데 shellcode를 보면 쉘을 띄워주는 쉘코드가 들어있따.
+밑에서 이 addr을 실행해주는데 shellcode를 보면 쉘을 띄워주는 쉘코드가 들어있다.
 
-`*addr =1 ` , `*addr[1] = 2` 이런식으로 되어있어서 shellcode가 실행이 안된다.
+`*addr =1 ` , `*addr[1] = 2` 이런식으로 되어있어서 shellcode를 실행해도 쉘이 안 뜬다.
 
 그래서 이곳을 fsb를 이용해서 원래 쉘코드로 바꿔주면 된다.
 
