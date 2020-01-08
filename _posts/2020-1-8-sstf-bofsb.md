@@ -65,7 +65,11 @@ _BOOL4 __cdecl playOthello(int a1)
 }
 ```
 
+name은 ebp-0x4C에 있고 format은 0xC에 존재하므로 name의 크기는 0x40이다. 여기서 name을 입력받을 때 0x40 이후 4바이트를 입력하면 format을 덮을 수 있다.
+
 name 입력할 때 format을 v5(&name)으로 덮어버린다. 그러면 `printf(format) -> printf(name)`이 될것이다. 
+
+scanf는 공백으로 입력 값을 구분하므로 공백 없이 값을 넣어줘야한다. 
 
 payload : 'A'*4 + "%p%p%p%p%p" + "A" * (0x40-len(전에넣었던만큼)) + p32(name)
 
