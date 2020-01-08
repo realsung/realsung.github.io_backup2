@@ -82,9 +82,9 @@ Dump of assembler code for function main:
 End of assembler dump.
 ```
 
-<br />
-
 Stack Canary ON
+
+<br />
 
 ```assembly
 pwndbg> disassemble main
@@ -105,9 +105,9 @@ Dump of assembler code for function main:
 End of assembler dump.
 ```
 
-<br />
-
 Stack Canary OFF
+
+<br />
 
 보호기법 해제한 것과 안한 것의 차이를 보면 아래 코드가 더 추가됐습니다.
 
