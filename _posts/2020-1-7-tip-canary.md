@@ -157,7 +157,7 @@ __stack_chk_fail (void)
 strong_alias (__stack_chk_fail, __stack_chk_fail_local)
 ```
 
-어셈으로 자세히 보면 `__fortify_fail` 함수를 실행시켜줍니다. 내부에서  `__libc_message` 함수로 `stack smashing detected`  띄워주고 `raise` 함수 호출해서 syscall 234번 `sys_tgkill` 함수를 불러 pid를 죽이고 signal을 띄워줘서 종료시킵니다. *버전 마다 다를 수도 있습니다.*
+gdb로 자세히 보면 `__fortify_fail` 함수를 실행시켜줍니다. 내부에서  `__libc_message` 함수로 `stack smashing detected`  띄워주고 `raise` 함수 호출해서 syscall 234번 `sys_tgkill` 함수를 불러 pid를 죽이고 signal을 띄워줘서 종료시킵니다. *버전 마다 다를 수도 있습니다.*
 
 추가로 함수 리턴 값에 오버플로우가 나지 않는 코드는 컴파일하면서 Canary를 `__stack_chk_guard` 라는 전역변수에 저장합니다.
 
