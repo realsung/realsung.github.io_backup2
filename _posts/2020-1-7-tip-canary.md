@@ -11,7 +11,7 @@ SSP 보호기법은 stack overflow를 방지하기 위한 보호기법이다.
 
 SFP와 BUF사이에 canary를 삽입해서 frame pointer 와 return address가 변조되면 `__stack_chk_fail` 을 호출한다.
 
-64비트 기준 : BUF | canary | SFP| RET | ARG
+64비트 기준 : BUF, canary, SFP, RET, ARG
 
 [Link](https://bpsecblog.wordpress.com/2016/05/16/memory_protect_linux_1/) <- 보호기법에 대한 설명은 이곳에 정리 잘 되어있다.
 
