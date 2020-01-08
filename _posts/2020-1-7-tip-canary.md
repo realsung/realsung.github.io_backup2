@@ -5,6 +5,8 @@ tags: [Canary]
 categories: [Tip]
 ---
 
+
+
 64비트 기준으로 작성했습니다.
 
 SSP 보호기법은 stack overflow를 방지하기 위한 보호기법이다.
