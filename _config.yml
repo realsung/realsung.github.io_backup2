@@ -9,6 +9,8 @@ description: realsung's blog
 url: https://realsung.github.io
 keywords: ["blog", "jekyll","ctf","CTF","wargame","hacking"]
 
+google_analytics: UA-125826027-1
+
 #
 ###################################
 # Jekyll configuration
@@ -29,6 +31,8 @@ kramdown:
     disable: true
   enable_coderay: false
 
+plugin:
+  - jekyll-sitemap
 
 #
 ###################################
