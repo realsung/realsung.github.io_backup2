@@ -89,7 +89,9 @@ unsigned __int64 sub_8BC()
 
 UAF가 터진다. name이랑 msg를 0x30만큼 똑같은 크기를 자유롭게 할당하고 해제할 수 있다.
 
-함수 포인터로 puts가 저장되서 heap영역에 puts의 주소가 저장되어있다. 그래서 leak이 가능하다. 그래서 puts 위치에 system을 쓰고 인자에는 /bin/sh\x00 넣어서 쉘을 띄워주면 된다.
+함수 포인터로 puts가 저장되서 heap영역에 puts의 주소가 저장되어있다. 그래서 leak이 가능하다. 
+
+puts 위치에 system을 쓰고 인자에는 /bin/sh\x00 넣어서 쉘을 띄워주면 된다.
 
 > exploit.py
 
