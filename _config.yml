@@ -19,7 +19,7 @@ google_analytics: UA-125826027-3
 #
 timezone:          Asia/Seoul
 markdown:          kramdown
-highlighter:       none
+#highlighter:       none
 excerpt_separator: <!--more-->
 permalink:         /:year/:title
 
