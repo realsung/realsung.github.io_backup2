@@ -21,7 +21,7 @@ timezone:          Asia/Seoul
 markdown:          kramdown
 #highlighter:       none
 excerpt_separator: <!--more-->
-permalink:         /:year/:title
+permalink:         /:year/:month/:day/:title
 
 kramdown:
   auto_ids: true
