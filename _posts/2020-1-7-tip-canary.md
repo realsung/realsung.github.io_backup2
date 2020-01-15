@@ -88,7 +88,7 @@ Stack Canary ON
 
 <br />
 
-```assembly
+```
 pwndbg> disassemble main
 Dump of assembler code for function main:
    0x0000000000400566 <+0>:	push   rbp
@@ -113,7 +113,7 @@ Stack Canary OFF
 
 보호기법 해제한 것과 안한 것의 차이를 보면 아래 코드가 더 추가됐습니다.
 
-```assembly
+```
    0x00000000004005e1 <+11>:	mov    rax,QWORD PTR fs:0x28
    0x00000000004005ea <+20>:	mov    QWORD PTR [rbp-0x8],rax
    0x00000000004005ee <+24>:	xor    eax,eax
