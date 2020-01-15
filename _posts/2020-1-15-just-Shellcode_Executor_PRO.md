@@ -90,7 +90,7 @@ int __fastcall executeShellcode(__int64 a1)
  0013: 0x06 0x00 0x00 0x00000000  return KILL
 ```
 
-demo_shellcode` 라는 영역을 3번 메뉴에서 실행시켜주기 때문에 이곳에 쉘코드를 넣어주면 된다. 근데 밑에 `The flag will be here` 이라는 문구가 있다. 여기에 플래그가 있어서 읽어오면 될거다. 
+`demo_shellcode` 라는 영역을 3번 메뉴에서 실행시켜주기 때문에 이곳에 쉘코드를 넣어주면 된다. 근데 밑에 `The flag will be here` 이라는 문구가 있다. 여기에 플래그가 있어서 읽어오면 될거다. 
 
 ![](https://user-images.githubusercontent.com/32904385/72424712-c3229880-37c9-11ea-9ce9-5d58e2ef305a.png)
 
