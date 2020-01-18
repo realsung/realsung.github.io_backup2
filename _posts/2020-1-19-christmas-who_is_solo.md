@@ -80,14 +80,14 @@ __int64 __fastcall main(__int64 a1, char **a2, char **a3)
       if ( qword_602080 )                       // 4. login
       {
         __printf_chk(1LL, "Input password: ");
-        read(0, &v9, 2000uLL); 									// vuln
+        read(0, &v9, 2000uLL);                  // vuln
       }
       else
       {
         puts("Login failed");
       }
     }
-    if ( v4 != 201527 )
+    if ( v4 != 0x31337 )
       break;
     __printf_chk(1LL, "Modify Data: ");
     read(0, buf, 300uLL);
