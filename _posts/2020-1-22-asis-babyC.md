@@ -25,7 +25,7 @@ cat cfg.dot | dot -Tpng > cfg.png
 
 * -i Option
 
-.idc파일로 저장해준다.
+.idc파일로 저장해준다. IDA에서 해당 idc파일을 불러와서 적용해주면 보기 쉽게 바꿔준다.
 
 ```c
 #include <idc.idc>
