@@ -126,6 +126,10 @@ $ dot -Tpng <target.dot> -o <output.png>
 
 이런식으로 흐름을 쉽게 볼 수 있다. 이외에도 [이 사이트](http://www.webgraphviz.com/) 에서도 .dot 코드만 있으면 쉽게 변환해준다.
 
+```
+$ demov -i babyc.idc -o patch -g cfg.dot ./babyc
+```
+
 나는 patch된 바이너리를 분석해서 풀었다.
 
 ```
