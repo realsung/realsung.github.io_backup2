@@ -47,6 +47,8 @@ categories: [ASIS]
 
 입력받는 버퍼가 0x128인데 0x148만큼 받는다. read가 입력받은 길이를 리턴하는 걸 이용해서 rax 맞춰주고 syscall 322(execveat) 가젯 맞춰주면 된다. rsi에는 우리가 입력한게 들어가니까 `/bin/sh\x00` 넣어주면 된다.
 
+> exploit.py
+
 ```python
 from pwn import *
 

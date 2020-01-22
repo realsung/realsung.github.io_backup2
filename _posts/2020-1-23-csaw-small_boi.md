@@ -86,6 +86,8 @@ categories: [CSAW]
 
 `sigreturn` 시스템 함수는 Signal을 처리하는 프로세스가 Kernel Mode에서 User Mode로 돌아올 때 스택을 복원하기 위해 사용되는 함수다. 이 시스템 함수 내부를 보면 `restore_sigcontext()` 이 있는데 COPY()를 이용해서 Stack에 저장된 값을 레지스터에 넣을 수 있다. 사용할만한 가젯이 없을 때 사용하기 용이하다. 
 
+> exploit.py
+
 ```python
 from pwn import *
 
