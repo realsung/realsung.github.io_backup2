@@ -1,6 +1,6 @@
 ---
 title: "[pwnable.xyz]password"
-date: 2020-2-2
+date: 2020-2-4
 tags: [pwnable.xyz]
 categories: [pwnable.xyz]
 ---
