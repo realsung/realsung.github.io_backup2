@@ -5,8 +5,6 @@ tags: [X-MAS]
 categories: [X-MAS]
 ---
 
-VM 가상화 문제다.
-
 ```c
 __int64 __fastcall main(__int64 a1, char **a2, char **a3)
 {
