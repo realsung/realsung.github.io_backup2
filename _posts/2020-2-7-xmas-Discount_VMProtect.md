@@ -1,6 +1,6 @@
 ---
 title: "2019 X-MAS CTF Discount VMProtect"
-date: 2020-2-6
+date: 2020-2-7
 tags: [X-MAS]
 categories: [X-MAS]
 ---
