@@ -1,5 +1,5 @@
 ---
-title: "[pwnable.xyz]Pvp"
+title: "[pwnable.xyz]PvP"
 date: 2020-2-6
 tags: [pwnable.xyz]
 categories: [pwnable.xyz]
