@@ -60,12 +60,12 @@ int main(){
     	for(unsigned char j=32; j<127; j++){
     		unsigned char c = j;
     		c = (2 * (c & 0x55)) | ((c >> 1) & 0x55);
-            c = (4 * (c & 0x33)) | ((c >> 2) & 0x33);
-            c = 16 * c | (c >> 4);
-            c = ~c & 0xff;
-            if(c == s2[i]){
-                input.push_back(j);
-            }
+        c = (4 * (c & 0x33)) | ((c >> 2) & 0x33);
+        c = 16 * c | (c >> 4);
+        c = ~c & 0xff;
+        if(c == s2[i]){
+            input.push_back(j);
+        }
     	}
     }
     reverse(input.begin(),input.end());
